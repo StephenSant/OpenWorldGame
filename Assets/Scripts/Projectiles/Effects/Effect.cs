@@ -4,18 +4,29 @@ using UnityEngine;
 
 namespace Projectiles.Effects
 {
-    public class Effect : MonoBehaviour
+    public abstract class Effect : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
+        public float effectRate = 1f;
+        public int damage = 1;
+        public GameObject visualEffectPrefab;
+        [HideInInspector] public Transform hitObject;
+        private float effectTimer = 0f;
 
+        protected virtual void Start()
+        {
+            GameObject clone = Instantiate(visualEffectPrefab, hitObject.transform);
+            clone.transform.position = transform.position;
+            clone.transform.rotation = transform.rotation;
         }
 
-        // Update is called once per frame
-        void Update()
+        protected virtual void Update()
         {
-
+            effectTimer += Time.deltaTime;
+            if (effectTimer >= 1f / effectRate)
+            {
+                RunEffect();
+            }
         }
+        public abstract void RunEffect();
     }
 }

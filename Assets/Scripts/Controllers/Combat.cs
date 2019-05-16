@@ -4,8 +4,9 @@ using UnityEngine;
 using System.Linq;
 
 [RequireComponent(typeof(Player), typeof(CameraLook))]
-public class Combat : MonoBehaviour
+public class Combat : MonoBehaviour, IHealth
 {
+    public int health = 100;
     public Weapon currentWeapon;
     public List<Weapon> weapons = new List<Weapon>();
     public int currentWeaponIndex = 0;
@@ -65,5 +66,17 @@ public class Combat : MonoBehaviour
             currentWeapon.gameObject.SetActive(true);
             currentWeaponIndex = index;
         }
+    }
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            print("YOU'RE DEAD!");
+        }
+    }
+    public void Heal(int heal)
+    {
+        health += heal;
     }
 }

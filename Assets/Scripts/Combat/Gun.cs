@@ -58,8 +58,9 @@ public class Gun : Weapon
         Vector3 direction = camTransform.forward;
 
         GameObject clone = Instantiate(projectilePrefab, bulletOrigin, bulletRotation);
-        Projectile bullet = clone.GetComponent<Projectile>();
-        bullet.Fire(lineOrigin, direction);
+        Projectile projectile = clone.GetComponent<Projectile>();
+        projectile.damage += damage;
+        projectile.Fire(lineOrigin, direction);
         Vector3 euler = Vector3.up * 2f;
         euler.x = Random.Range(-1f, 1f);
         camLook.SetTargetOffset(euler * recoil);
