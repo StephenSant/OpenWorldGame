@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-[RequireComponent(typeof(Player),typeof(CameraLook))]
-public class Shooting : MonoBehaviour
+[RequireComponent(typeof(Player), typeof(CameraLook))]
+public class Combat : MonoBehaviour
 {
     public Weapon currentWeapon;
     public List<Weapon> weapons = new List<Weapon>();
     public int currentWeaponIndex = 0;
 
-    private Player player;
+    //private Player player;
     private CameraLook cameraLook;
 
     void Awake()
     {
-        player = GetComponent<Player>();
+        //player = GetComponent<Player>();
         cameraLook = GetComponent<CameraLook>();
     }
 
@@ -27,6 +27,14 @@ public class Shooting : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            DisableAllWeapons();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            SelectWeapon(0);
+        }
         if (currentWeapon)
         {
             bool fire1 = Input.GetButton("Fire1");
@@ -34,10 +42,7 @@ public class Shooting : MonoBehaviour
             {
                 if (currentWeapon.canShoot)
                 {
-                    currentWeapon.Shoot();
-                    Vector3 euler = Vector3.up * 2f;
-                    euler.x = Random.Range(-1f, 1f);
-                    cameraLook.SetTargetOffset(euler * currentWeapon.recoil);
+                    currentWeapon.Attack();
                 }
             }
         }
@@ -46,6 +51,7 @@ public class Shooting : MonoBehaviour
     {
         foreach (var item in weapons)
         {
+            item.canShoot = false;
             item.gameObject.SetActive(false);
         }
     }

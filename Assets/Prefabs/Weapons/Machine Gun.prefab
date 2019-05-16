@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6144396108585349035}
-  - component: {fileID: 6930523651443631750}
+  - component: {fileID: 6579589404232525807}
   m_Layer: 0
   m_Name: Machine Gun
   m_TagString: Untagged
@@ -66,7 +66,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6930523651443631750
+--- !u!114 &6579589404232525807
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -75,20 +75,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1231149482939857603}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ea44be7be7a8994290c054ab29dfed4, type: 3}
+  m_Script: {fileID: 11500000, guid: f57bb4f1688c6154c9df16cf374ea3fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  maxAmmo: 500
+  attackRate: 0.2
+  canShoot: 0
+  maxReserve: 500
   maxClip: 20
   spread: 2
   recoil: 1
   range: 10
-  shootRate: 0.2
   shotOrigin: {fileID: 2573950579455971283}
-  bulletPrefab: {fileID: 0}
-  canShoot: 0
-  ammo: 0
+  projectilePrefab: {fileID: 6010654245236865371, guid: 8df0fe49b0793f242a553a9d1d209c61,
+    type: 3}
+  currentReserve: 0
+  currentClip: 0
 --- !u!1 &5768071279304125807
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,38 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Projectiles;
 
-public class Weapon : MonoBehaviour
+public class Gun : Weapon
 {
-    public int damage = 10,
-               maxReserve = 500, 
-               maxClip = 20;
-    public float spread = 2,
-                 recoil = 1,
-                 range = 10,
-                 shootRate = .2f;
+    public int maxReserve = 500, maxClip = 20;
+    public float spread = 2, recoil = 1, range = 10;
     public Transform shotOrigin;
-    public GameObject bulletPrefab;
-    [HideInInspector]
-    public bool canShoot = false;
+    public GameObject projectilePrefab;
+    [SerializeField] [Range(0, 500)] private int currentReserve = 0, currentClip = 0;
+    private CameraLook camLook;
 
-    private float shootTimer = 0;
-    [SerializeField][Range(0,500)]
-    private int currentReserve = 0, currentClip = 0;
-
-    void Start()
+    public void Awake()
     {
-        currentReserve = maxReserve;
-        currentClip = maxClip;
-    }
-
-    void Update()
-    {
-        shootTimer += Time.deltaTime;
-        if (shootTimer>=shootRate)
-        {
-            canShoot = true;
-        }
+        camLook = FindObjectOfType<CameraLook>();
     }
 
     public void Reload()
@@ -60,24 +42,27 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    public void Shoot()
+    public override void Attack()
     {
+        base.Attack();
         currentClip--;
         if (currentClip == 0)
         {
             Reload();
         }
-        shootTimer = 0;
-        canShoot = false;
-        Camera attachedCamera = Camera.main; 
+        Camera attachedCamera = Camera.main;
         Transform camTransform = attachedCamera.transform;
         Vector3 bulletOrigin = camTransform.position;
         Quaternion bulletRotation = camTransform.rotation;
-        Vector3 lineOrigin = shotOrigin.position; 
+        Vector3 lineOrigin = shotOrigin.position;
         Vector3 direction = camTransform.forward;
 
-        GameObject clone = Instantiate(bulletPrefab, bulletOrigin, bulletRotation);
-        Bullet bullet = clone.GetComponent<Bullet>();
+        GameObject clone = Instantiate(projectilePrefab, bulletOrigin, bulletRotation);
+        Projectile bullet = clone.GetComponent<Projectile>();
         bullet.Fire(lineOrigin, direction);
+        Vector3 euler = Vector3.up * 2f;
+        euler.x = Random.Range(-1f, 1f);
+        camLook.SetTargetOffset(euler * recoil);
+
     }
 }
