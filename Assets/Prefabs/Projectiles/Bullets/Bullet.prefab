@@ -77,8 +77,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   speed: 50
-  effectPrefab: {fileID: 5352815854980170575, guid: 729b3af2647e81d4f8b92e19298620b5,
-    type: 3}
+  effectPrefab: {fileID: 0}
   line: {fileID: 1683188836579911673}
 --- !u!1 &8837539038046946084
 GameObject:

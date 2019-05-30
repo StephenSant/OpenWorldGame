@@ -37,17 +37,20 @@ namespace Projectiles
         }
         void OnCollisionEnter(Collision col)
         {
-            end = transform.position;
-            ContactPoint contact = col.contacts[0];
-            Vector3 bulletDir = end - start;
-            Quaternion lookRotation = Quaternion.LookRotation(bulletDir);
-            Quaternion rotation = lookRotation * Quaternion.AngleAxis(-90, Vector3.right);
-            GameObject clone = Instantiate(effectPrefab, contact.point, rotation);
-            float impactAngle = 180 - Vector3.Angle(bulletDir, contact.normal);
-            clone.transform.localScale = clone.transform.localScale / (1 + impactAngle / 45);
-            Effect effect = clone.GetComponent<Effect>();
-            effect.damage += damage;
-            effect.hitObject = col.transform;
+            if (effectPrefab)
+            {
+                end = transform.position;
+                ContactPoint contact = col.contacts[0];
+                Vector3 bulletDir = end - start;
+                Quaternion lookRotation = Quaternion.LookRotation(bulletDir);
+                Quaternion rotation = lookRotation * Quaternion.AngleAxis(-90, Vector3.right);
+                GameObject clone = Instantiate(effectPrefab, contact.point, rotation);
+                float impactAngle = 180 - Vector3.Angle(bulletDir, contact.normal);
+                clone.transform.localScale = clone.transform.localScale / (1 + impactAngle / 45);
+                Effect effect = clone.GetComponent<Effect>();
+                effect.damage += damage;
+                effect.hitObject = col.transform;
+            }
             Destroy(gameObject);
         }
         public override void Fire(Vector3 lineOrigin, Vector3 direction)
