@@ -6,15 +6,25 @@ using UnityEngine;
 public class Flee : SteeringBehaviour
 {
     public float stoppingDistance = 1;
+
+    public override void OnDrawGizmosSelected(AI owner)
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(owner.target.position, stoppingDistance);
+    }
+
     public override Vector3 GetForce(AI owner)
     {
         Vector3 force = Vector3.zero;
 
-        if (owner.target)
+        float distance = Vector3.Distance(owner.transform.position, owner.target.position);
+        if (distance < stoppingDistance)
         {
-            force += owner.target.position - owner.transform.position;
+            if (owner.hasTarget)
+            {
+                force += owner.transform.position - owner.target.position;
+            }
         }
-
         return force.normalized;
     }
 }

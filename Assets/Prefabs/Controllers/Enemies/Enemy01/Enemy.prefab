@@ -129,11 +129,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e542c899cbb9ef54fab32969581a4807, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxVelocity: 40
+  target: {fileID: 0}
+  targetTag: Player
+  maxVelocity: 75
   maxDistance: 10
   behaviours:
   - {fileID: 11400000, guid: 2319bc0346db3914fb756be01f2e0849, type: 2}
   velocity: {x: 0, y: 0, z: 0}
+  hasTarget: 0
 --- !u!1 &4054528066671245589
 GameObject:
   m_ObjectHideFlags: 0

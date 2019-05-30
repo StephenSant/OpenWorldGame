@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Seek
   m_EditorClassIdentifier: 
   weighting: 1
-  stoppingDistance: 1
+  stoppingDistance: 4.75

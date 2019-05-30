@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using NaughtyAttributes;
 
 [RequireComponent(typeof(Player), typeof(CameraLook))]
 public class Combat : MonoBehaviour, IHealth
 {
-    public int health = 100;
+    [Range(0,100)]public int health = 100;
     public Weapon currentWeapon;
     public List<Weapon> weapons = new List<Weapon>();
     public int currentWeaponIndex = 0;

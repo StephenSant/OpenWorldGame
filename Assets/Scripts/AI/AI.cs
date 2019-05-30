@@ -2,20 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using NaughtyAttributes;
 
 public class AI : MonoBehaviour
 {
-    public Transform target;
-    public string targetTag = "Player";
+    public bool hasTarget;
+    [ShowIf("hasTarget")]public Transform target;
+    [Tag]public string targetTag = "Player";
     public float maxVelocity = 15;
     public float maxDistance = 10;
-    public SteeringBehaviour[] behaviours;
-
-    public Vector3 velocity;
-
-    [HideInInspector]public bool hasTarget;
-
-    protected NavMeshAgent agent;
+    [Expandable]public SteeringBehaviour[] behaviours;
+    [ReadOnly]public Vector3 velocity;
+    public NavMeshAgent agent;
 
     private void Awake()
     {
@@ -24,17 +22,7 @@ public class AI : MonoBehaviour
 
     private void Update()
     {
-        
-
-        if (target)
-        {
-            hasTarget = true;
-        }
-        else
-        {
-            hasTarget = false;
-            target = GameObject.FindGameObjectWithTag(targetTag).transform;
-        }
+        target = GameObject.FindGameObjectWithTag(targetTag).transform;
 
         Vector3 velocity = Vector3.zero;
 
@@ -49,6 +37,19 @@ public class AI : MonoBehaviour
         if (NavMesh.SamplePosition(desiredPostition, out hit, maxDistance, -1))
         {
             agent.SetDestination(hit.position);
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Vector3 desiredPosition = transform.position + velocity * Time.deltaTime;
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(desiredPosition, .1f);
+
+        // Render all behaviours
+        foreach (var behaviour in behaviours)
+        {
+            behaviour.OnDrawGizmosSelected(this);
         }
     }
 }
