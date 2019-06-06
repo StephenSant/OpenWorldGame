@@ -79,6 +79,7 @@ GameObject:
   - component: {fileID: 5331420851866704538}
   - component: {fileID: 8576990293189158405}
   - component: {fileID: 322486622}
+  - component: {fileID: 2051943207}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -230,6 +231,22 @@ MonoBehaviour:
   currentWeapon: {fileID: 0}
   weapons: []
   currentWeaponIndex: 0
+--- !u!114 &2051943207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4849989746044324067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_IgnoreFromBuild: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &8659665477229357097
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,7 +258,7 @@ GameObject:
   - component: {fileID: 6137391662093329456}
   - component: {fileID: 1748954670826406720}
   - component: {fileID: 895561932380171404}
-  - component: {fileID: 1249859607326945688}
+  - component: {fileID: 1143619359}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -302,7 +319,7 @@ Camera:
   m_HDR: 0
   m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
+  m_ForceIntoRT: 1
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
@@ -314,7 +331,7 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8659665477229357097}
   m_Enabled: 1
---- !u!114 &1249859607326945688
+--- !u!114 &1143619359
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -323,60 +340,57 @@ MonoBehaviour:
   m_GameObject: {fileID: 8659665477229357097}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23c1ce4fb46143f46bc5cb5224c934f6, type: 3}
+  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Version: 1
-  clearColorMode: 0
-  backgroundColorHDR: {r: 0.09461041, g: 0.28383124, b: 0.75294113, a: 0}
-  clearDepth: 1
-  renderingPath: 0
-  volumeLayerMask:
+  volumeTrigger: {fileID: 6137391662093329456}
+  volumeLayer:
     serializedVersion: 2
-    m_Bits: 4294967295
-  volumeAnchorOverride: {fileID: 0}
-  aperture: 8
-  shutterSpeed: 0.005
-  iso: 400
-  m_FrameSettings:
-    overrides: 0
-    enableShadow: 1
-    enableContactShadows: 1
-    enableShadowMask: 1
-    enableSSR: 0
-    enableSSAO: 1
-    enableSubsurfaceScattering: 1
-    enableTransmission: 1
-    enableAtmosphericScattering: 1
-    enableVolumetrics: 1
-    enableReprojectionForVolumetrics: 1
-    enableLightLayers: 1
-    diffuseGlobalDimmer: 1
-    specularGlobalDimmer: 1
-    shaderLitMode: 1
-    enableDepthPrepassWithDeferredRendering: 0
-    enableTransparentPrepass: 1
-    enableMotionVectors: 1
-    enableObjectMotionVectors: 1
-    enableDecals: 1
-    enableRoughRefraction: 1
-    enableTransparentPostpass: 1
-    enableDistortion: 1
-    enablePostprocess: 1
-    enableAsyncCompute: 1
-    enableOpaqueObjects: 1
-    enableTransparentObjects: 1
-    enableRealtimePlanarReflection: 1
-    enableMSAA: 0
-    lightLoopSettings:
-      overrides: 0
-      enableTileAndCluster: 1
-      enableComputeLightEvaluation: 1
-      enableComputeLightVariants: 1
-      enableComputeMaterialVariants: 1
-      enableFptlForForwardOpaque: 1
-      enableBigTilePrepass: 1
-      isFptlEnabled: 1
+    m_Bits: 256
+  stopNaNPropagation: 1
+  finalBlitToCameraTarget: 1
+  antialiasingMode: 1
+  temporalAntialiasing:
+    jitterSpread: 0.75
+    sharpness: 0.25
+    stationaryBlending: 0.95
+    motionBlending: 0.85
+  subpixelMorphologicalAntialiasing:
+    quality: 2
+  fastApproximateAntialiasing:
+    fastMode: 0
+    keepAlpha: 0
+  fog:
+    enabled: 1
+    excludeSkybox: 1
+  debugLayer:
+    lightMeter:
+      width: 512
+      height: 256
+      showCurves: 1
+    histogram:
+      width: 512
+      height: 256
+      channel: 3
+    waveform:
+      exposure: 0.12
+      height: 256
+    vectorscope:
+      size: 256
+      exposure: 0.12
+    overlaySettings:
+      linearDepth: 0
+      motionColorIntensity: 4
+      motionGridSize: 64
+      colorBlindnessType: 0
+      colorBlindnessStrength: 1
+  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
+  m_ShowToolkit: 0
+  m_ShowCustomSorter: 0
+  breakBeforeColorGrading: 0
+  m_BeforeTransparentBundles: []
+  m_BeforeStackBundles: []
+  m_AfterStackBundles: []
 --- !u!1001 &598077842149108377
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -384,16 +398,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7642783895634222592}
     m_Modifications:
-    - target: {fileID: 7962529727818496187, guid: 701d37c33f49c5a458dcd5924046425a,
-        type: 3}
-      propertyPath: m_Name
-      value: Pistol
-      objectReference: {fileID: 0}
-    - target: {fileID: 7962529727818496187, guid: 701d37c33f49c5a458dcd5924046425a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1095484263141611013, guid: 701d37c33f49c5a458dcd5924046425a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -447,6 +451,16 @@ PrefabInstance:
     - target: {fileID: 1095484263141611013, guid: 701d37c33f49c5a458dcd5924046425a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962529727818496187, guid: 701d37c33f49c5a458dcd5924046425a,
+        type: 3}
+      propertyPath: m_Name
+      value: Pistol
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962529727818496187, guid: 701d37c33f49c5a458dcd5924046425a,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -464,12 +478,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7642783895634222592}
     m_Modifications:
+    - target: {fileID: 1006394219246306837, guid: ce59d949d67501546b610dad18e1298f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 1231149482939857603, guid: ce59d949d67501546b610dad18e1298f,
         type: 3}
       propertyPath: m_Name
       value: Machine Gun
       objectReference: {fileID: 0}
     - target: {fileID: 1231149482939857603, guid: ce59d949d67501546b610dad18e1298f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5768071279304125807, guid: ce59d949d67501546b610dad18e1298f,
         type: 3}
       propertyPath: m_Layer
       value: 9
@@ -529,7 +553,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1006394219246306837, guid: ce59d949d67501546b610dad18e1298f,
+    - target: {fileID: 6433780932342170822, guid: ce59d949d67501546b610dad18e1298f,
         type: 3}
       propertyPath: m_Layer
       value: 9
@@ -540,16 +564,6 @@ PrefabInstance:
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7653325017752856769, guid: ce59d949d67501546b610dad18e1298f,
-        type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 5768071279304125807, guid: ce59d949d67501546b610dad18e1298f,
-        type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 6433780932342170822, guid: ce59d949d67501546b610dad18e1298f,
         type: 3}
       propertyPath: m_Layer
       value: 9

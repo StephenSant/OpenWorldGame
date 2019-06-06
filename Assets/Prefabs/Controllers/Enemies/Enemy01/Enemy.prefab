@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 8369910962024082419}
   - component: {fileID: 157947424550835620}
   - component: {fileID: 1109026555}
-  m_Layer: 11
+  - component: {fileID: 68833513}
+  m_Layer: 10
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +116,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 1
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 5
   m_ObstacleAvoidanceType: 4
 --- !u!114 &1109026555
 MonoBehaviour:
@@ -129,14 +130,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e542c899cbb9ef54fab32969581a4807, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasTarget: 1
   target: {fileID: 0}
   targetTag: Player
-  maxVelocity: 75
+  maxVelocity: 100
   maxDistance: 10
   behaviours:
-  - {fileID: 11400000, guid: 2319bc0346db3914fb756be01f2e0849, type: 2}
+  - {fileID: 11400000, guid: 1ef75a8864f5445448810122f370fd8f, type: 2}
   velocity: {x: 0, y: 0, z: 0}
-  hasTarget: 0
+  agent: {fileID: 0}
+--- !u!114 &68833513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409914124844101281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_IgnoreFromBuild: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &4054528066671245589
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,7 +166,7 @@ GameObject:
   - component: {fileID: 1736605725798340809}
   - component: {fileID: 8455672034732558725}
   - component: {fileID: 752417617128724097}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
