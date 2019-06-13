@@ -1,0 +1,17 @@
+{
+    "name": "MyScripts",
+    "references": [
+        "NaughtyAttributes.Core",
+        "NavMeshComponents"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}

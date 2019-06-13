@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public int health = 100;
+
     public float runSpeed = 8f;
     public float walkSpeed = 6f;
     public float gravity = -10f;
@@ -111,5 +113,12 @@ public class Player : MonoBehaviour
     {
         dashing = true;
         currentSpeed = speed;
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            health -= 5;
+        }
     }
 }

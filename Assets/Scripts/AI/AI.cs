@@ -11,7 +11,7 @@ public class AI : MonoBehaviour
     [Tag]public string targetTag = "Player";
     public float maxVelocity = 15;
     public float maxDistance = 10;
-    [Expandable]public SteeringBehaviour[] behaviours;
+    public SteeringBehaviour[] behaviours;
     [ReadOnly]public Vector3 velocity;
     public NavMeshAgent agent;
 
